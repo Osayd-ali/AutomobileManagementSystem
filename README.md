@@ -9,19 +9,24 @@ for scalability and maintainability following standard Spring Boot best practice
 
 ## Features
 
-- **Complete CRUD Operations**: Create, read, update, and delete products
-- **Custom Validation**: Enforces business rules for product data integrity
-- **Exception Handling**: Centralized error handling with meaningful HTTP responses
-- **Filtered Queries**: Built-in support for filtering test products via configuration
+- **VIN-based Vehicle Tracking**: Unique 17-character identifier for each automobile
+- **Full CRUD Operations**: Create, read, update, and delete vehicle records
+- **Automated Validation**: Data integrity enforcement at the API level
+- **Multi-Location Support**: Track vehicles across distributed operations
 - **RESTful Design**: Follows REST API best practices
+- **Persistent Storage**: MySQL database for production-grade reliability
+- **Custom Exception Handling**: Meaningful error messages and HTTP status codes
 
 ## Technologies Used
 
 - Java 21
 - Spring Boot 3.2.8
+- Spring Data JPA : Data access abstraction
+- Hibernate : ORM implementation
+- MySQL 8.0: Relational Database
 - Maven
 - Spring Web
-- MySQL
+ 
 
 ## API Endpoints
 
@@ -39,3 +44,80 @@ for scalability and maintainability following standard Spring Boot best practice
 | POST | `/create` | Creates a new Automobile object using the JSON automobile object provided in the message body |
 | PUT | `/update` | Updates an existing Automobile object using the JSON automobile object provided in the message body, VIN in the JSON object is used to identify the Automobile to update. VIN cannot be changed |
 | DELETE | `/delete/{vin}` | Deletes the automobile with the provided VIN |
+
+## Project Structure
+
+src/main/java/
+├── controllers/          # REST endpoints
+│   └── AutomobileController.java
+├── services/            # Business logic layer
+│   ├── AutomobileService.java
+│   └── AutomobileServiceImpl.java
+├── repositories/        # Data access layer
+│   └── AutomobileRepository.java
+├── entities/           # Domain models
+│   └── Automobile.java
+├── dtos/              # Data transfer objects
+│   ├── AutomobileDto.java
+│   └── ApiExceptionDto.java
+└── exceptions/        # Custom exceptions
+    ├── AlreadyExistsException.java
+    ├── BadParameterException.java
+    └── NotFoundException.java
+
+src/main/resources/
+└── application.properties
+
+## Validation Rules
+- **VIN**: Must be exactly 17 alphanumeric characters, cannot be null
+- **Make**: Cannot be null or empty
+- **Model**: Cannot be null or empty
+- **Color**: Cannot be null or empty
+- **Year**: Must be between minimum allowed year and current year
+
+## Architecture Highlights
+
+## Three-Layer Architecture
+1. **Controllter Latyer (@RestController)**
+- Handles HTTP requests and responses
+- Maps endpoints to service methods
+- Manages exception handling
+
+2. **Service Layer (@Service)**
+- Contains business logic and validation
+- Coordinates between controller and repository
+- Implements domain-specific rules
+
+3. **Repository Layer (@Repository)**
+- Spring Data JPA interface
+- Automatic CRUD implementation
+- Custom query methods via naming conventions
+
+## ORM Benefits Demonstrated
+- **No Manual SQL**: All database operations through JPA repository methods
+- **TypeSafety**: Compile-time checking of data access code
+- **Database Independence**: Easy to switch from MySQL to PostgreSQL
+- **Automatic Transactions**: Spring manages database transactions
+- **Query Optimization**: Hibernate generates optimized SQL
+
+### Testing
+Use Postman or any HTTP client to test the endpoints. The application includes:
+
+- Custom exception handling for validation errors
+- HTTP status codes (200, 400, 404) for different scenarios
+- Structured error responses for debugging
+- Set base URL to http://localhost:8080
+
+## Real-World Applications
+
+## Supply Chain & Logistics
+- **Fleet Management**: Track delivery vehicles across distribution centers
+- **Maintenance Scheduling**: Monitor vehicle service history and upcoming maintenance
+- **Compliance Tracking**: Maintain regulatory compliance records
+- **Asset Management**: Complete vehicle lifecycle from acquisition to disposal
+
+## Integration Scenarios
+- **ERP Systems**: Integrate with enterprise resource planning software
+- **Warehouse Management**: Connect with WMS for delivery coordination
+- **Analytics Dashboards**: Provide data for fleet performance analysis
+- **Third-Party APIs**: Share vehicle data with logistics partners
