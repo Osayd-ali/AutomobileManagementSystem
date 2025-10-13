@@ -1,13 +1,10 @@
-# Automobile Management System (A RESTful API)
+# Automobile Fleet Management System 
 
-Automobile Management System with full CRUD operations functionality for managing automobile objects, backed by a MySQL database.
+A RESTful API built with Spring Boot for managing automobile fleet data with comprehensive CRUD operations, automated validation, and persistent MySQL storage.
 
 ## Overview
 
-This Spring Boot-based Automobile Management System project provides full CRUD (Create,
-Read, Update, Delete) functionality for managing automobile objects, backed by a MySQL
-database. The application allows users to add, view, update, and delete automobile entries
-through a RESTful API. It uses Spring Data JPA for efficient database operations and is structured
+This system demonstrates modern enterprise application architecture using Object-Relational Mapping (ORM) to eliminate manual SQL querying. Designed for supply chain and logistics operations, it provides scalable vehicle tracking and management capabilities. It also provides full CRUD (Create, Read, Update, Delete) functionality for managing automobile objects, backed by a MySQL database. The application allows users to add, view, update, and delete automobile entries through a RESTful API. It uses Spring Data JPA for efficient database operations and is structured
 for scalability and maintainability following standard Spring Boot best practices.
 
 ## Features
