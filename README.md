@@ -45,29 +45,6 @@ for scalability and maintainability following standard Spring Boot best practice
 | PUT | `/update` | Updates an existing Automobile object using the JSON automobile object provided in the message body, VIN in the JSON object is used to identify the Automobile to update. VIN cannot be changed |
 | DELETE | `/delete/{vin}` | Deletes the automobile with the provided VIN |
 
-## Project Structure
-
-src/main/java/
-├── controllers/          # REST endpoints
-│   └── AutomobileController.java
-├── services/            # Business logic layer
-│   ├── AutomobileService.java
-│   └── AutomobileServiceImpl.java
-├── repositories/        # Data access layer
-│   └── AutomobileRepository.java
-├── entities/           # Domain models
-│   └── Automobile.java
-├── dtos/              # Data transfer objects
-│   ├── AutomobileDto.java
-│   └── ApiExceptionDto.java
-└── exceptions/        # Custom exceptions
-    ├── AlreadyExistsException.java
-    ├── BadParameterException.java
-    └── NotFoundException.java
-
-src/main/resources/
-└── application.properties
-
 ## Validation Rules
 - **VIN**: Must be exactly 17 alphanumeric characters, cannot be null
 - **Make**: Cannot be null or empty
